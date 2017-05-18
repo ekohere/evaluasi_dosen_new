@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0dabe79a4493c1317979283f0acd34e",
+    "content-hash": "b4c1e1ab1239ad55ea3b59d1070e3dee",
     "packages": [
+        {
+            "name": "appzcoder/crud-generator",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appzcoder/crud-generator.git",
+                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/a03475989f076a8a5e9627c4eb4dc1245511f753",
+                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.1",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.6",
+                "orchestra/testbench": "^3.3",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Appzcoder\\CrudGenerator\\": "src/"
+                },
+                "classmap": [
+                    "tests"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sohel Amin",
+                    "email": "sohelamincse@gmail.com",
+                    "homepage": "http://www.appzcoder.com"
+                }
+            ],
+            "description": "Laravel 5 CRUD Generator",
+            "keywords": [
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator"
+            ],
+            "time": "2017-05-09T19:23:21+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -147,6 +199,49 @@
                 "parser"
             ],
             "time": "2017-03-29T16:04:15+00:00"
+        },
+        {
+            "name": "ignasbernotas/laravel-model-generator",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ignasbernotas/laravel-model-generator.git",
+                "reference": "d92d0181c763868e378b9dcd75bf8a746d45b3d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ignasbernotas/laravel-model-generator/zipball/d92d0181c763868e378b9dcd75bf8a746d45b3d9",
+                "reference": "d92d0181c763868e378b9dcd75bf8a746d45b3d9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Iber\\Generator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignas Bernotas",
+                    "email": "ignas@iber.lt"
+                }
+            ],
+            "description": "Laravel 5 model generator from existing schema",
+            "keywords": [
+                "generator",
+                "laravel",
+                "model",
+                "schema"
+            ],
+            "time": "2017-04-06T09:29:06+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1921,58 +2016,6 @@
     ],
     "packages-dev": [
         {
-            "name": "appzcoder/crud-generator",
-            "version": "v2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/a03475989f076a8a5e9627c4eb4dc1245511f753",
-                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^5.1",
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9.6",
-                "orchestra/testbench": "^3.3",
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Appzcoder\\CrudGenerator\\": "src/"
-                },
-                "classmap": [
-                    "tests"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sohel Amin",
-                    "email": "sohelamincse@gmail.com",
-                    "homepage": "http://www.appzcoder.com"
-                }
-            ],
-            "description": "Laravel 5 CRUD Generator",
-            "keywords": [
-                "crud",
-                "crud generator",
-                "laravel",
-                "laravel crud generator"
-            ],
-            "time": "2017-05-09T19:23:21+00:00"
-        },
-        {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -2118,49 +2161,6 @@
                 "test"
             ],
             "time": "2015-05-11T14:41:42+00:00"
-        },
-        {
-            "name": "ignasbernotas/laravel-model-generator",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ignasbernotas/laravel-model-generator.git",
-                "reference": "d92d0181c763868e378b9dcd75bf8a746d45b3d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ignasbernotas/laravel-model-generator/zipball/d92d0181c763868e378b9dcd75bf8a746d45b3d9",
-                "reference": "d92d0181c763868e378b9dcd75bf8a746d45b3d9",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Iber\\Generator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ignas Bernotas",
-                    "email": "ignas@iber.lt"
-                }
-            ],
-            "description": "Laravel 5 model generator from existing schema",
-            "keywords": [
-                "generator",
-                "laravel",
-                "model",
-                "schema"
-            ],
-            "time": "2017-04-06T09:29:06+00:00"
         },
         {
             "name": "mockery/mockery",
