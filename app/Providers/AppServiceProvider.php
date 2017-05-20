@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function ($view) {
+
+            $current_route_path = \Request::route()->uri();
+            $view->with('current_route_path', $current_route_path);
+
+        });
+
+        Validator::extend('current_password_match', function($attribute, $value, $parameters, $validator) {
+            return Hash::check($value, Auth::user()->password);
+        });
     }
 
     /**

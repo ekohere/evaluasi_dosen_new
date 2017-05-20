@@ -110,14 +110,6 @@
             </li>
         </ul>
     </li>
-    @if($list_ipal->count()>0)
-    <li class=" {{ stripos($current_route_path,'pencatatan_pompa')!==false ? 'nav-active' : '' }}">
-        <a href="{{url('/pencatatan_pompa')}}">
-            <i class="fa fa-copy" aria-hidden="true"></i>
-            <span>Pencatatan IPAL</span>
-        </a>
-    </li>
-    @endif
 
     {{--<li class="nav-parent {{ stripos($current_route_path,'laporan')!==false ? 'nav-active nav-expanded' : '' }}">
         <a>
