@@ -5,7 +5,7 @@ namespace DummyNamespace;
 use DummyRootNamespaceHttp\Requests;
 use DummyRootNamespaceHttp\Controllers\Controller;
 
-use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use DummyRootNamespaceModels\{{modelName}};
 use Illuminate\Http\Request;
 use Session;
 
@@ -18,16 +18,9 @@ class DummyClass extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = {{pagination}};
-
-        if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
-        } else {
-            ${{crudName}} = {{modelName}}::paginate($perPage);
-        }
-
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        ${{crudName}} = {{modelName}}::where('nama','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:{{pagination}});
+        $title='Tabel {{modelName}}';
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}','title'));
     }
 
     /**
@@ -37,7 +30,8 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{viewPath}}{{viewName}}.create');
+    $title='Tambah Data {{modelName}}';
+        return view('{{viewPath}}{{viewName}}.create',compact('title'));
     }
 
     /**
@@ -69,8 +63,8 @@ class DummyClass extends Controller
     public function show($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        $title='{{modelName}} '.${{crudNameSingular}}->nama;
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}','title'));
     }
 
     /**
@@ -83,8 +77,8 @@ class DummyClass extends Controller
     public function edit($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        $title='Ubah {{modelName}} '.${{crudNameSingular}}->nama;
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}','title'));
     }
 
     /**

@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('admin/pertanyaan', 'PertanyaanController');
+Route::resource('admin/jenis_pertanyaan', 'JenisPertanyaanController');
+Route::resource('admin/hasil_evaluasi_dosen', 'HasilEvaluasiDosenController');
+Route::resource('admin/hasil_evaluasi_dosen_has_pertanyaan', 'HasilEvaluasiDosenHasPertanyaanController');
