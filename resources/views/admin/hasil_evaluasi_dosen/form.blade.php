@@ -34,13 +34,13 @@
         {!! Form::number('tahun', null, ['class' => 'form-control']) !!}
         {!! $errors->first('tahun', '<p class="help-block">:message</p>') !!}
     </div>
+</div>
 <div class="form-group {{ $errors->has('semester') ? 'has-error' : ''}}">
     {!! Form::label('semester', 'Semester', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('semester', ['ganjil'=>'Ganjil','genap'=> 'Genap'], null, ['required','class' => 'form-control']) !!}
         {!! $errors->first('semester', '<p class="help-block" placehoder>:message</p>') !!}
     </div>
-</div>
 </div><div class="form-group {{ $errors->has('mahasiswa_id') ? 'has-error' : ''}}">
     {!! Form::label('mahasiswa_id', 'Mahasiswa Id', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">

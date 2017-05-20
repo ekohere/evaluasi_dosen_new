@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Jenis_pertanyaan</div>
+                    <div class="panel-heading">Tabel Jenis Pertanyaan</div>
                     <div class="panel-body">
                         <a href="{{ url('/admin/jenis_pertanyaan/create') }}" class="btn btn-success btn-sm" title="Add New jenis_pertanyaan">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New

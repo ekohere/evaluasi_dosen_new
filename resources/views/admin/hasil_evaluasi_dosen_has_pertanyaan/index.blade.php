@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Hasil_evaluasi_dosen_has_pertanyaan</div>
+                    <div class="panel-heading">Tabel Hasil Evaluasi Dosen Has Pertanyaan</div>
                     <div class="panel-body">
                         <a href="{{ url('/admin/hasil_evaluasi_dosen_has_pertanyaan/create') }}" class="btn btn-success btn-sm" title="Add New hasil_evaluasi_dosen_has_pertanyaan">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
