@@ -29,7 +29,7 @@
                                     <tr>
                                         <th class="text-right">ID</th><td>{{ $pertanyaan->id }}</td>
                                     </tr>
-                                    <tr><th> Pertanyaan </th><td> {{ $pertanyaan->pertanyaan }} </td></tr><tr><th> Pertanyaancol </th><td> {{ $pertanyaan->pertanyaancol }} </td></tr><tr><th> Jenis Pertanyaan </th><td> {{ $pertanyaan->jenis_pertanyaan }} </td></tr>
+                                    <tr><th> Pertanyaan </th><td> {{ $pertanyaan->pertanyaan }} </td></tr><tr><th> Pertanyaancol </th><td> {{ $pertanyaan->pertanyaancol }} </td></tr><tr><th> Jenis Pertanyaan Id </th><td> {{ $pertanyaan->jenis_pertanyaan_id }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

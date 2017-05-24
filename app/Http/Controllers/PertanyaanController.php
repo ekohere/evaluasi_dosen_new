@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Pertanyaan;
+use App\Models\JenisPertanyaan;
 use Illuminate\Http\Request;
 use Session;
 
@@ -31,7 +32,8 @@ class PertanyaanController extends Controller
     public function create()
     {
     $title='Tambah Data Pertanyaan';
-        return view('admin.pertanyaan.create',compact('title'));
+    $listJenisPertanyaan=JenisPertanyaan::pluck('nama','id');
+        return view('admin.pertanyaan.create',compact('title','listJenisPertanyaan'));
     }
 
     /**

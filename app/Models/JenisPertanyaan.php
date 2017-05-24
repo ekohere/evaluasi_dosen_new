@@ -24,5 +24,6 @@ class JenisPertanyaan extends Model
 
         return $this->hasMany('App\Pertanyaan') ;
     }
+    
         
 }
