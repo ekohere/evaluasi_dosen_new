@@ -1,23 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+    <section class="panel panel-warning">
+        <header class="panel-heading">
+            <h2 class="panel-title">{{isset($title)?$title:''}}</h2>
+        </header>
+        <div class="panel-body">
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">jenis_pertanyaan {{ $jenis_pertanyaan->id }}</div>
-                    <div class="panel-body">
-
-                        <a href="{{ url('/admin/jenis_pertanyaan') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <a href="{{ url('/admin/jenis_pertanyaan/' . $jenis_pertanyaan->id . '/edit') }}" title="Edit jenis_pertanyaan"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                        <a href="{{ url('admin/jenis_pertanyaan/' . $jenis_pertanyaan->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit jenis_pertanyaan"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                         {!! Form::open([
                             'method'=>'DELETE',
                             'url' => ['admin/jenis_pertanyaan', $jenis_pertanyaan->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                            {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
                                     'type' => 'submit',
                                     'class' => 'btn btn-danger btn-xs',
                                     'title' => 'Delete jenis_pertanyaan',
@@ -31,16 +27,13 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $jenis_pertanyaan->id }}</td>
+                                        <th class="text-right">ID</th><td>{{ $jenis_pertanyaan->id }}</td>
                                     </tr>
                                     <tr><th> Nama </th><td> {{ $jenis_pertanyaan->nama }} </td></tr><tr><th> Singkatan </th><td> {{ $jenis_pertanyaan->singkatan }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
 
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
+    </section>
 @endsection

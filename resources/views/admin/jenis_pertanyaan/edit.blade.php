@@ -1,25 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+    <section class="panel panel-warning">
+        <header class="panel-heading">
+            <h2 class="panel-title">{{isset($title)?$title:''}}</h2>
+        </header>
+        <div class="panel-body">
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit jenis_pertanyaan #{{ $jenis_pertanyaan->id }}</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/jenis_pertanyaan') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <strong>Data Belum Lengkap Atau Sesuai. </strong> Lengkapi data yang diminta
+                </div>
+            @endif
 
                         {!! Form::model($jenis_pertanyaan, [
                             'method' => 'PATCH',
@@ -31,10 +24,6 @@
                         @include ('admin.jenis_pertanyaan.form', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}
-
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
+    </section>
 @endsection

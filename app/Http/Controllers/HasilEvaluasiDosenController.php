@@ -18,16 +18,9 @@ class HasilEvaluasiDosenController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $hasil_evaluasi_dosen = HasilEvaluasiDosen::paginate($perPage);
-        } else {
-            $hasil_evaluasi_dosen = HasilEvaluasiDosen::paginate($perPage);
-        }
-
-        return view('admin.hasil_evaluasi_dosen.index', compact('hasil_evaluasi_dosen'));
+        $hasil_evaluasi_dosen = HasilEvaluasiDosen::where('nama_dosen','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:25);
+        $title='Tabel HasilEvaluasiDosen';
+        return view('admin.hasil_evaluasi_dosen.index', compact('hasil_evaluasi_dosen','title'));
     }
 
     /**
@@ -37,7 +30,8 @@ class HasilEvaluasiDosenController extends Controller
      */
     public function create()
     {
-        return view('admin.hasil_evaluasi_dosen.create');
+    $title='Tambah Data HasilEvaluasiDosen';
+        return view('admin.hasil_evaluasi_dosen.create',compact('title'));
     }
 
     /**
@@ -69,8 +63,8 @@ class HasilEvaluasiDosenController extends Controller
     public function show($id)
     {
         $hasil_evaluasi_dosen = HasilEvaluasiDosen::findOrFail($id);
-
-        return view('admin.hasil_evaluasi_dosen.show', compact('hasil_evaluasi_dosen'));
+        $title='HasilEvaluasiDosen '.$hasil_evaluasi_dosen->nama;
+        return view('admin.hasil_evaluasi_dosen.show', compact('hasil_evaluasi_dosen','title'));
     }
 
     /**
@@ -83,8 +77,8 @@ class HasilEvaluasiDosenController extends Controller
     public function edit($id)
     {
         $hasil_evaluasi_dosen = HasilEvaluasiDosen::findOrFail($id);
-
-        return view('admin.hasil_evaluasi_dosen.edit', compact('hasil_evaluasi_dosen'));
+        $title='Ubah HasilEvaluasiDosen '.$hasil_evaluasi_dosen->nama;
+        return view('admin.hasil_evaluasi_dosen.edit', compact('hasil_evaluasi_dosen','title'));
     }
 
     /**

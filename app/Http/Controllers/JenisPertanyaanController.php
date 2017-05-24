@@ -18,16 +18,9 @@ class JenisPertanyaanController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $jenis_pertanyaan = JenisPertanyaan::paginate($perPage);
-        } else {
-            $jenis_pertanyaan = JenisPertanyaan::paginate($perPage);
-        }
-
-        return view('admin.jenis_pertanyaan.index', compact('jenis_pertanyaan'));
+        $jenis_pertanyaan = JenisPertanyaan::where('nama','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:25);
+        $title='Tabel JenisPertanyaan';
+        return view('admin.jenis_pertanyaan.index', compact('jenis_pertanyaan','title'));
     }
 
     /**
@@ -37,7 +30,8 @@ class JenisPertanyaanController extends Controller
      */
     public function create()
     {
-        return view('admin.jenis_pertanyaan.create');
+    $title='Tambah Data JenisPertanyaan';
+        return view('admin.jenis_pertanyaan.create',compact('title'));
     }
 
     /**
@@ -69,8 +63,8 @@ class JenisPertanyaanController extends Controller
     public function show($id)
     {
         $jenis_pertanyaan = JenisPertanyaan::findOrFail($id);
-
-        return view('admin.jenis_pertanyaan.show', compact('jenis_pertanyaan'));
+        $title='JenisPertanyaan '.$jenis_pertanyaan->nama;
+        return view('admin.jenis_pertanyaan.show', compact('jenis_pertanyaan','title'));
     }
 
     /**
@@ -83,8 +77,8 @@ class JenisPertanyaanController extends Controller
     public function edit($id)
     {
         $jenis_pertanyaan = JenisPertanyaan::findOrFail($id);
-
-        return view('admin.jenis_pertanyaan.edit', compact('jenis_pertanyaan'));
+        $title='Ubah JenisPertanyaan '.$jenis_pertanyaan->nama;
+        return view('admin.jenis_pertanyaan.edit', compact('jenis_pertanyaan','title'));
     }
 
     /**

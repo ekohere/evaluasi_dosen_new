@@ -18,16 +18,9 @@ class PertanyaanController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $pertanyaan = Pertanyaan::paginate($perPage);
-        } else {
-            $pertanyaan = Pertanyaan::paginate($perPage);
-        }
-
-        return view('admin.pertanyaan.index', compact('pertanyaan'));
+        $pertanyaan = Pertanyaan::where('pertanyaan','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:25);
+        $title='Tabel Pertanyaan';
+        return view('admin.pertanyaan.index', compact('pertanyaan','title'));
     }
 
     /**
@@ -37,7 +30,8 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
-        return view('admin.pertanyaan.create');
+    $title='Tambah Data Pertanyaan';
+        return view('admin.pertanyaan.create',compact('title'));
     }
 
     /**
@@ -69,8 +63,8 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $pertanyaan = Pertanyaan::findOrFail($id);
-
-        return view('admin.pertanyaan.show', compact('pertanyaan'));
+        $title='Pertanyaan '.$pertanyaan->nama;
+        return view('admin.pertanyaan.show', compact('pertanyaan','title'));
     }
 
     /**
@@ -83,8 +77,8 @@ class PertanyaanController extends Controller
     public function edit($id)
     {
         $pertanyaan = Pertanyaan::findOrFail($id);
-
-        return view('admin.pertanyaan.edit', compact('pertanyaan'));
+        $title='Ubah Pertanyaan '.$pertanyaan->nama;
+        return view('admin.pertanyaan.edit', compact('pertanyaan','title'));
     }
 
     /**

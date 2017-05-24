@@ -1,52 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Tabel Hasil Evaluasi Dosen</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/hasil_evaluasi_dosen/create') }}" class="btn btn-success btn-sm" title="Add New hasil_evaluasi_dosen">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
+    <section class="panel panel-warning">
+        <header class="panel-heading ">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            </div>
+            <h2 class="panel-title">{{isset($title)?$title:''}}</h2>
+        </header>
+        <div class="panel-body">
+            <a href="{{ url('/admin/hasil_evaluasi_dosen/create') }}" class="mb-xs mt-xs mr-xs btn btn-primary" ><i class="fa fa-plus"></i> Tambah</a>
 
-                        {!! Form::open(['method' => 'GET', 'url' => '/admin/hasil_evaluasi_dosen', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        {!! Form::close() !!}
+            <form id="form_filter" >
+            <div class="row form-inline form-horizontal">
+                <div class="col-sm-12 col-md-6">
+                    <div class="col-md-2">
+                        {!! Form::select('pagination', ['10'=>'10','25'=>'25','50'=>'50','100'=>'100'], isset($_GET['pagination'])?$_GET['pagination']:25, ["onchange"=>"this.form.submit();",'class' => 'form-control mb-md']) !!}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"> data per halaman</label>
+                    </div>
 
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="datatable-default_filter" class="dataTables_filter">
+                        <label><input class="form-control" value="{{isset($_GET['search'])?$_GET['search']:''}}" name="search" placeholder="Search" aria-controls="datatable-default">
+                        </label></div>
+                </div>
+            </div>
+            </form>
+                            <table class="table table-no-more table-bordered table-striped mb-none">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Dosen Id</th><th>Nama Dosen</th><th>Nama Lengkap Dosen</th><th>Actions</th>
+                                        <th>ID</th><th>Dosen Id</th><th>Nama Dosen</th><th>Nama Lengkap Dosen</th><th>Mata Kuliah Id</th><th>Nama Mata Kuliah</th><th>Tahun</th><th>Mahasiswa Id</th><th>Nama Mahasiswa</th><th>Nim Mahasiswa</th><th>Kelas Id</th><th>Nama Kelas</th><th>Program Studi</th><th>Jurusan</th><th>Komentar</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($hasil_evaluasi_dosen as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->dosen_id }}</td><td>{{ $item->nama_dosen }}</td><td>{{ $item->nama_lengkap_dosen }}</td>
+                                        <td>{{ $item->dosen_id }}</td><td>{{ $item->nama_dosen }}</td><td>{{ $item->nama_lengkap_dosen }}</td><td>{{ $item->mata_kuliah_id }}</td><td>{{ $item->nama_mata_kuliah }}</td><td>{{ $item->tahun }}</td><td>{{ $item->mahasiswa_id }}</td><td>{{ $item->nama_mahasiswa }}</td><td>{{ $item->nim_mahasiswa }}</td><td>{{ $item->kelas_id }}</td><td>{{ $item->nama_kelas }}</td><td>{{ $item->program_studi }}</td><td>{{ $item->jurusan }}</td><td>{{ $item->komentar }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/hasil_evaluasi_dosen/' . $item->id) }}" title="View hasil_evaluasi_dosen"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/hasil_evaluasi_dosen/' . $item->id . '/edit') }}" title="Edit hasil_evaluasi_dosen"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/hasil_evaluasi_dosen/' . $item->id) }}" class="btn btn-success btn-xs" title="View hasil_evaluasi_dosen"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
+                                            <a href="{{ url('/admin/hasil_evaluasi_dosen/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit hasil_evaluasi_dosen"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/admin/hasil_evaluasi_dosen', $item->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                                {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete hasil_evaluasi_dosen" />', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-xs',
                                                         'title' => 'Delete hasil_evaluasi_dosen',
@@ -58,12 +61,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $hasil_evaluasi_dosen->appends(['search' => Request::get('search')])->render() !!} </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+                            <div class="pagination-wrapper"> {!! $hasil_evaluasi_dosen->appends(Request::except('page'))->render() !!} </div>
         </div>
-    </div>
+    </section>
 @endsection

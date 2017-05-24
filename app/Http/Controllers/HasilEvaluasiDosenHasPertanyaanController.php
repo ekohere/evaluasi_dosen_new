@@ -18,16 +18,9 @@ class HasilEvaluasiDosenHasPertanyaanController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $hasil_evaluasi_dosen_has_pertanyaan = HasilEvaluasiDosenHasPertanyaan::paginate($perPage);
-        } else {
-            $hasil_evaluasi_dosen_has_pertanyaan = HasilEvaluasiDosenHasPertanyaan::paginate($perPage);
-        }
-
-        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.index', compact('hasil_evaluasi_dosen_has_pertanyaan'));
+        $hasil_evaluasi_dosen_has_pertanyaan = HasilEvaluasiDosenHasPertanyaan::where('hasil_evaluasi_dosen_id','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:25);
+        $title='Tabel HasilEvaluasiDosenHasPertanyaan';
+        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.index', compact('hasil_evaluasi_dosen_has_pertanyaan','title'));
     }
 
     /**
@@ -37,7 +30,8 @@ class HasilEvaluasiDosenHasPertanyaanController extends Controller
      */
     public function create()
     {
-        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.create');
+    $title='Tambah Data HasilEvaluasiDosenHasPertanyaan';
+        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.create',compact('title'));
     }
 
     /**
@@ -69,8 +63,8 @@ class HasilEvaluasiDosenHasPertanyaanController extends Controller
     public function show($id)
     {
         $hasil_evaluasi_dosen_has_pertanyaan = HasilEvaluasiDosenHasPertanyaan::findOrFail($id);
-
-        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.show', compact('hasil_evaluasi_dosen_has_pertanyaan'));
+        $title='HasilEvaluasiDosenHasPertanyaan '.$hasil_evaluasi_dosen_has_pertanyaan->nama;
+        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.show', compact('hasil_evaluasi_dosen_has_pertanyaan','title'));
     }
 
     /**
@@ -83,8 +77,8 @@ class HasilEvaluasiDosenHasPertanyaanController extends Controller
     public function edit($id)
     {
         $hasil_evaluasi_dosen_has_pertanyaan = HasilEvaluasiDosenHasPertanyaan::findOrFail($id);
-
-        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.edit', compact('hasil_evaluasi_dosen_has_pertanyaan'));
+        $title='Ubah HasilEvaluasiDosenHasPertanyaan '.$hasil_evaluasi_dosen_has_pertanyaan->nama;
+        return view('admin.hasil_evaluasi_dosen_has_pertanyaan.edit', compact('hasil_evaluasi_dosen_has_pertanyaan','title'));
     }
 
     /**
