@@ -79,8 +79,9 @@ class PertanyaanController extends Controller
     public function edit($id)
     {
         $pertanyaan = Pertanyaan::findOrFail($id);
+        $listJenisPertanyaan=JenisPertanyaan::pluck('nama','id');
         $title='Ubah Pertanyaan '.$pertanyaan->nama;
-        return view('admin.pertanyaan.edit', compact('pertanyaan','title'));
+        return view('admin.pertanyaan.edit', compact('pertanyaan','title','listJenisPertanyaan'));
     }
 
     /**

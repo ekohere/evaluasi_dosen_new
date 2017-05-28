@@ -4,11 +4,20 @@
         {!! Form::text('nama', null, ['class' => 'form-control']) !!}
         {!! $errors->first('nama', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('singkatan') ? 'has-error' : ''}}">
+</div>
+<div class="form-group {{ $errors->has('singkatan') ? 'has-error' : ''}}">
     {!! Form::label('singkatan', 'Singkatan', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::text('singkatan', null, ['class' => 'form-control']) !!}
         {!! $errors->first('singkatan', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
+
+<div class="form-group {{ $errors->has('order') ? 'has-error' : ''}}">
+    {!! Form::label('order', 'Order', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::number('order', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('order', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

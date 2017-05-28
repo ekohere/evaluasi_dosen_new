@@ -1,14 +1,14 @@
 
-<html class="fixed sidebar-light" lang="en" xmlns="http://www.w3.org/1999/html">
+<html class="fixed sidebar-light {{isset($sidebar_left_collapsed)?'sidebar-left-collapsed':''}}" lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 
     <!-- Basic -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{isset($title)?$title:'Aplikasi Prodigi PDAM'}}</title>
-    <meta name="keywords" content="Aplikasi Prodigi PDAM" />
-    <meta name="description" content="Sistem Informasi Aplikasi Prodigi PDAM">
+    <title>{{isset($title)?$title:'Aplikasi Evaluasi Dosen'}}</title>
+    <meta name="keywords" content="Aplikasi Evaluasi Dosen" />
+    <meta name="description" content="Sistem Informasi Aplikasi Evaluasi Dosen">
     <meta name="author" content="TIM BRITECH SAMARINDA">
 
     <!-- Mobile Metas -->
@@ -217,7 +217,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>{{isset($title)?$title:'Aplikasi Prodigi PDAM'}}</h2>
+                <h2>{{isset($title)?$title:'Aplikasi Evaluasi Dosen POLITANI'}}</h2>
 
                 <div class="right-wrapper pull-right">
                     <ol class="breadcrumbs">

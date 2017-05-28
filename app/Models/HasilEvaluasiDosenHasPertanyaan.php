@@ -22,11 +22,11 @@ class HasilEvaluasiDosenHasPertanyaan extends Model
     protected $guarded = [];
 
     public function pertanyaan () {
-    	return $this->belongsTo('App\Pertanyaan');
+    	return $this->belongsTo('App\Models\Pertanyaan');
     }
 
     public function hasil_evaluasi_dosen () {
-    	return $this->belongsTo('App\HasilEvaluasiDosen');
+    	return $this->belongsTo('App\Models\HasilEvaluasiDosen');
     }
         
 }

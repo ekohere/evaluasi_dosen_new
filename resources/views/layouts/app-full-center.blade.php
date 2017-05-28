@@ -1,7 +1,7 @@
 
 <html class="fixed">
 <head>
-    <title>{{$title}}</title>
+    <title>{{isset($title)?$title:'Aplikasi Evaluasi Dosen Politani'}}</title>
     <!-- Basic -->
     <meta charset="UTF-8">
 

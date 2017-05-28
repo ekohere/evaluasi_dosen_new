@@ -18,7 +18,8 @@ class JenisPertanyaanController extends Controller
      */
     public function index(Request $request)
     {
-        $jenis_pertanyaan = JenisPertanyaan::where('nama','like','%'.(isset($request->search)?$request->search:'').'%')->paginate(isset($request->pagination)?$request->pagination:25);
+        $jenis_pertanyaan = JenisPertanyaan::where('nama','like','%'.(isset($request->search)?$request->search:'').'%')
+            ->orderBy('order')->paginate(isset($request->pagination)?$request->pagination:25);
         $title='Tabel JenisPertanyaan';
         return view('admin.jenis_pertanyaan.index', compact('jenis_pertanyaan','title'));
     }

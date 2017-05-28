@@ -28,13 +28,16 @@ class HasilEvaluasiDosen extends Model
         'nama_kelas',
         'program_studi',
         'jurusan',
-        'komentar'
+        'komentar',
+        'users_id',
+        'program_studi_id',
+        'jurusan_id',
     ];
 
     protected $guarded = [];
 
         public function hasil_evaluasi_dosen_has_pertanyaan(){
 
-        return $this->hasMany('App\HasilEvaluasiDosenHasPertanyaan') ;
+        return $this->hasMany('App\Models\HasilEvaluasiDosenHasPertanyaan') ;
     }
 }

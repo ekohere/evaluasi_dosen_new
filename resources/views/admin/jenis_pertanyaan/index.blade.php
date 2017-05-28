@@ -33,14 +33,14 @@
                             <table class="table table-no-more table-bordered table-striped mb-none">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Nama</th><th>Singkatan</th><th>Actions</th>
+                                        <th>ID</th><th>Nama</th><th>Singkatan</th><th>Order</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($jenis_pertanyaan as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nama }}</td><td>{{ $item->singkatan }}</td>
+                                        <td>{{ $item->nama }}</td><td>{{ $item->singkatan }}</td><td>{{ $item->order }}</td>
                                         <td>
                                             <a href="{{ url('/admin/jenis_pertanyaan/' . $item->id) }}" class="btn btn-success btn-xs" title="View jenis_pertanyaan"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                                             <a href="{{ url('/admin/jenis_pertanyaan/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit jenis_pertanyaan"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>

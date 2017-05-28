@@ -11,11 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::resource('admin/pertanyaan', 'PertanyaanController');
-Route::resource('admin/jenis_pertanyaan', 'JenisPertanyaanController');
-Route::resource('admin/hasil_evaluasi_dosen', 'HasilEvaluasiDosenController');
-Route::resource('admin/hasil_evaluasi_dosen_has_pertanyaan', 'HasilEvaluasiDosenHasPertanyaanController');
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/evaluasi_dosen', 'EvaluasiDosenController@index')->name('home');
+    Route::post('/evaluasi_dosen', 'EvaluasiDosenController@store');
+
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    Route::resource('admin/pertanyaan', 'PertanyaanController');
+    Route::resource('admin/jenis_pertanyaan', 'JenisPertanyaanController');
+    Route::resource('admin/hasil_evaluasi_dosen', 'HasilEvaluasiDosenController');
+    Route::resource('admin/hasil_evaluasi_has_pertanyaan', 'HasilEvaluasiDosenHasPertanyaanController');
+});

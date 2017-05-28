@@ -15,15 +15,20 @@ class JenisPertanyaan extends Model
 
     protected $fillable = [
         'nama',
-        'singkatan'
+        'singkatan',
+        'order'
     ];
 
     protected $guarded = [];
 
-     public function pertanyaan(){
+     public function listPertanyaan(){
 
-        return $this->hasMany('App\Pertanyaan') ;
+        return $this->hasMany('App\Models\Pertanyaan') ;
     }
-    
+
+    public function getNamaLengkapAttribute(){
+
+        return $this->nama.' ('.$this->singkatan.')' ;
+    }
         
 }
