@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/mata_kuliah_dosen','Api\HomeController@getMataKuliahDosen');
+    Route::get('/mata_kuliah_dosen','HomeController@getMataKuliahDosen');
 });
