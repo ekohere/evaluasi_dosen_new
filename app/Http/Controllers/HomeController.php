@@ -16,6 +16,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
+        $mata_kuliah_dosen=$this->getMataKuiahDosen($request);
+        $title='Data MataKuliah & Dosen';
+        return view('home', compact('jenis_pertanyaan','title','mata_kuliah_dosen'));
+    }
+
+    public function getMataKuiahDosen(Request $request){
         $http = new Client;
         $response = $http->get('http://sia.politanisamarinda.ac.id/api/mata_kuliah', [
             'headers' => [
@@ -74,8 +81,7 @@ class HomeController extends Controller
             if($count>0) unset($mata_kuliah_dosen[$key]);
         }
 
-        $title='Data MataKuliah & Dosen';
-        return view('home', compact('jenis_pertanyaan','title','mata_kuliah_dosen'));
+        return $mata_kuliah_dosen;
     }
 
 }
