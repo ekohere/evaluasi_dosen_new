@@ -39,10 +39,16 @@ class HomeController extends Controller
         ]);
 
         $result= json_decode((string) $response->getBody(), true);
+        $tahun_sia='';
+        $semester_sia='';
+        $user_id='';
         $mata_kuliah_dosen=[];
         $data=[];
         if($result['success'] && isset($result['response'])){
-            $data=$result['response'];
+            $data=$result['response']['mata_kuliah_dosen'];
+            $tahun_sia=$result['response']['tahun_sia'];
+            $semester_sia=$result['response']['semester_sia'];
+            $user_id=$result['response']['user_id'];
         }
 
         foreach($data as $item){
@@ -81,9 +87,9 @@ class HomeController extends Controller
         }
 
         foreach($mata_kuliah_dosen as $key => $item){
-            $count=HasilEvaluasiDosen::where('tahun',$request->session()->get('tahun'))
-                ->where('semester',$request->session()->get('semester'))
-                ->where('users_id',Auth::user()->id)->where('mata_kuliah_id',$item['mata_kuliah_id'])
+            $count=HasilEvaluasiDosen::where('tahun',$tahun_sia)
+                ->where('semester',$semester_sia)
+                ->where('users_id',$user_id)->where('mata_kuliah_id',$item['mata_kuliah_id'])
                 ->where('dosen_id',$item['dosen_id'])->count();
             if($count>0) unset($mata_kuliah_dosen[$key]);
         }
