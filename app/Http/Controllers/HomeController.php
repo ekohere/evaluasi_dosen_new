@@ -17,17 +17,24 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $mata_kuliah_dosen=$this->getMataKuiahDosen($request);
+        $mata_kuliah_dosen=$this->getMataKuliahDosen($request);
         $title='Data MataKuliah & Dosen';
         return view('home', compact('jenis_pertanyaan','title','mata_kuliah_dosen'));
     }
 
-    public function getMataKuiahDosen(Request $request){
+    public function getMataKuliahDosen(Request $request){
+        $access_token='';
+        if(isset($request->access_token)){
+            $access_token=$request->access_token;
+        }else{
+            $access_token=Auth::user()->access_token
+        }
+
         $http = new Client;
         $response = $http->get('http://sia.politanisamarinda.ac.id/api/mata_kuliah', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization'      => 'Bearer '. Auth::user()->access_token
+                'Authorization'      => 'Bearer '. $access_token
             ]
         ]);
 
