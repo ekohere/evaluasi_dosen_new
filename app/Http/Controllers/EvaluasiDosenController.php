@@ -53,6 +53,6 @@ class EvaluasiDosenController extends Controller
     }
 
     public function getPertanyaan(){
-        return JenisPertanyaan::with('Pertanyaan')->orderBy('order')->get();
+        return JenisPertanyaan::with(['listPertanyaan'])->orderBy('order')->get();
     }
 }
