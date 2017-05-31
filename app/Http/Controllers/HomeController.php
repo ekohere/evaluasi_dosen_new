@@ -27,7 +27,7 @@ class HomeController extends Controller
         if(isset($request->access_token)){
             $access_token=$request->access_token;
         }else{
-            $access_token=Auth::user()->access_token
+            $access_token=Auth::user()->access_token;
         }
 
         $http = new Client;
