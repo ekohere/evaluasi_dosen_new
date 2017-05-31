@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/mata_kuliah_dosen','HomeController@getMataKuliahDosen');
+
+Route::get('/pertanyaan','EvaluasiDosenController@getPertanyaan');

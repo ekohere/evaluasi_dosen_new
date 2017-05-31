@@ -51,4 +51,8 @@ class EvaluasiDosenController extends Controller
 
         return redirect('/home');
     }
+
+    public function getPertanyaan(){
+        return JenisPertanyaan::with('Pertanyaan')->orderBy('order')->get();
+    }
 }
