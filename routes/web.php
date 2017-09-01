@@ -30,4 +30,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/hasil_evaluasi_has_pertanyaan', 'HasilEvaluasiDosenHasPertanyaanController');
 });
 
-Route::get('isi_evaluasi','HomeController@getIsiEvaluasi');
+Route::get('isi_evaluasi/{mhs_id}','HomeController@getIsiEvaluasi');
