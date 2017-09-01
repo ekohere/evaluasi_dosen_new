@@ -19,7 +19,6 @@ class HasilEvaluasiDosen extends Model
         'nama_lengkap_dosen',
         'mata_kuliah_id',
         'nama_mata_kuliah',
-        'tahun',
         'semester',
         'mahasiswa_id',
         'nama_mahasiswa',

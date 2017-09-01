@@ -136,8 +136,8 @@ class LoginController extends Controller
         $request->session()->put('mahasiswa_id',$user_array['response']['mahasiswa']['id']);
         $request->session()->put('nama_mahasiswa',$user_array['response']['name']);
         $request->session()->put('nim',$user_array['response']['mahasiswa']['nim']);
-        $request->session()->put('kelas_id',$user_array['response']['mahasiswa']['list_institusi'][0]['kelas']['id']);
-        $request->session()->put('nama_kelas',$user_array['response']['mahasiswa']['list_institusi'][0]['kelas']['nama']);
+        /*$request->session()->put('kelas_id',$user_array['response']['mahasiswa']['list_institusi'][0]['kelas']['id']);
+        $request->session()->put('nama_kelas',$user_array['response']['mahasiswa']['list_institusi'][0]['kelas']['nama']);*/
         $request->session()->put('program_studi_id',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['id']);
         $request->session()->put('program_studi',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['nama']);
         $request->session()->put('jurusan_id',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['parent_institusi']['id']);

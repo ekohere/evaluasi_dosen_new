@@ -51,11 +51,12 @@
                 <tbody>
                 <?php $number=1; ?>
                 @foreach($mata_kuliah_dosen as $item)
-
-                        <tr class="action" href="evaluasi_dosen?mk_id={{$item['mata_kuliah_id']}}&mk_nama={{ $item['mata_kuliah_nama'] }}&dosen_id={{ $item['dosen_id'] }}&dosen_nama={{ $item['dosen_nama']}}&dosen_nama_lengkap={{ $item['dosen_nama_lengkap'] }}">
+                    @foreach($item['dosen'] as $dosen)
+                        <tr class="action" href="evaluasi_dosen?mk_id={{$item['mata_kuliah_id']}}&mk_nama={{ $item['mata_kuliah_nama'] }}&dosen_id={{ $dosen['id'] }}&dosen_nama={{ $dosen['nama']}}&dosen_nama_lengkap={{ $dosen['dosen_nama_lengkap'] }}">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item['mata_kuliah_nama'] }}</td><td>{{ $item['dosen_nama'] }}</td>
+                            <td>{{ $item['mata_kuliah_nama'] }}</td><td>{{ $dosen['dosen_nama_lengkap'] }}</td>
                         </tr>
+                    @endforeach
                 @endforeach
                 </tbody>
             </table>
