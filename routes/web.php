@@ -19,7 +19,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/evaluasi_dosen', 'EvaluasiDosenController@index')->name('home');
+    Route::get('/evaluasi_dosen', 'EvaluasiDosenController@index');
     Route::post('/evaluasi_dosen', 'EvaluasiDosenController@store');
 
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
