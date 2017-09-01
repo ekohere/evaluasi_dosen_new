@@ -50,9 +50,9 @@
                 </thead>
                 <tbody>
                 <?php $number=1; ?>
-                @foreach($mata_kuliah_dosen as $item)
+                @foreach($mata_kuliah_dosen['mata_kuliah_dosen'] as $item)
                     @foreach($item['dosen'] as $dosen)
-                        <tr class="action" href="evaluasi_dosen?mk_id={{$item['mata_kuliah_id']}}&mk_nama={{ $item['mata_kuliah_nama'] }}&dosen_id={{ $dosen['id'] }}&dosen_nama={{ $dosen['nama']}}&dosen_nama_lengkap={{ $dosen['nama_lengkap'] }}">
+                        <tr class="action" href="evaluasi_dosen?mk_id={{$item['mata_kuliah_id']}}&mk_nama={{ $item['mata_kuliah_nama'] }}&dosen_id={{ $dosen['id'] }}&dosen_nama={{ $dosen['nama']}}&dosen_nama_lengkap={{ $dosen['nama_lengkap'] }}&kelas_id={{ $item['kelas_id'] }}&kelas_nama={{ $item['kelas_nama'] }}&prodi_id={{ $mata_kuliah_dosen['prodi_id'] }}&prodi_nama={{ $mata_kuliah_dosen['prodi_nama'] }}">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item['mata_kuliah_nama'] }}</td><td>{{ $dosen['nama_lengkap'] }}</td>
                         </tr>

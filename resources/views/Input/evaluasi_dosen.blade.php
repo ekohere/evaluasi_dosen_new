@@ -61,8 +61,8 @@
     {!! Form::hidden ('mahasiswa_id', Session::get('mahasiswa_id')) !!}
     {!! Form::hidden ('nama_mahasiswa', Session::get('nama_mahasiswa')) !!}
     {!! Form::hidden ('nim_mahasiswa', Session::get('nim')) !!}
-    {!! Form::hidden ('kelas_id', Session::get('kelas_id')) !!}
-    {!! Form::hidden ('nama_kelas', Session::get('nama_kelas')) !!}
+    {!! Form::hidden ('kelas_id', $_GET['kelas_id']) !!}
+    {!! Form::hidden ('nama_kelas', $_GET['kelas_nama']) !!}
     {!! Form::hidden ('program_studi_id',Session::get('program_studi_id')) !!}
     {!! Form::hidden ('program_studi', Session::get('program_studi')) !!}
     {!! Form::hidden ('jurusan_id',Session::get('jurusan_id')) !!}

@@ -18,6 +18,7 @@ class HomeController extends Controller
     {
 
         $mata_kuliah_dosen=$this->getMataKuliahDosen($request);
+        //return $mata_kuliah_dosen;
         $title='Data MataKuliah & Dosen';
         return view('home', compact('jenis_pertanyaan','title','mata_kuliah_dosen'));
     }
@@ -41,59 +42,70 @@ class HomeController extends Controller
         $result= json_decode((string) $response->getBody(), true);
         $semester='';
         $user_id='';
+        $prodi_id='';
         $mata_kuliah_dosen=[];
         $data=[];
         if($result['success'] && isset($result['response'])){
-            $data=$result['response']['mata_kuliah_dosen'];
-            $semester=$result['response']['semester'];
-            $user_id=$result['response']['user_id'];
+            $data=$result['response'];
+            $semester=$data['semester'];
+            $user_id=$data['user_id'];
+            $prodi_id=$data['prodi_id'];
         }
 
-        /*foreach($data as $item){
-            $mk_dosen_item=[];
-            $mk_dosen_item['mata_kuliah_id']=$item['mata_kuliah_id'];
-            $mk_dosen_item['mata_kuliah_nama']=$item['mata_kuliah_nama'];
 
-            if(isset($item['dosen1_id'])){
-                $mk_dosen_item['dosen_id']=$item['dosen1_id'];
-                $mk_dosen_item['dosen_nama']=$item['dosen1_nama'];
-                $mk_dosen_item['dosen_nama_lengkap']=$item['dosen1_nama_lengkap'];
-                array_push($mata_kuliah_dosen,$mk_dosen_item);
-            }
 
-            if(isset($item['dosen2_id'])){
-                $mk_dosen_item['dosen_id']=$item['dosen2_id'];
-                $mk_dosen_item['dosen_nama']=$item['dosen2_nama'];
-                $mk_dosen_item['dosen_nama_lengkap']=$item['dosen2_nama_lengkap'];
-                array_push($mata_kuliah_dosen,$mk_dosen_item);
-            }
-
-            if(isset($item['dosen3_id'])){
-                $mk_dosen_item['dosen_id']=$item['dosen3_id'];
-                $mk_dosen_item['dosen_nama']=$item['dosen3_nama'];
-                $mk_dosen_item['dosen_nama_lengkap']=$item['dosen3_nama_lengkap'];
-                array_push($mata_kuliah_dosen,$mk_dosen_item);
-            }
-
-            if(isset($item['dosen4_id'])){
-                $mk_dosen_item['dosen_id']=$item['dosen4_id'];
-                $mk_dosen_item['dosen_nama']=$item['dosen4_nama'];
-                $mk_dosen_item['dosen_nama_lengkap']=$item['dosen4_nama_lengkap'];
-                array_push($mata_kuliah_dosen,$mk_dosen_item);
-            }
-
-        }*/
-
-        foreach($data as  $item){
+        foreach($data['mata_kuliah_dosen'] as  $keyItem=>$item){
             foreach ($item['dosen'] as $key =>$dosen){
                 $count=HasilEvaluasiDosen::where('semester',$semester)
-                    ->where('users_id',$user_id)->where('mata_kuliah_id',$item['mata_kuliah_id'])
+                    ->where('users_id',$user_id)
+                    ->where('kelas_id',$item['kelas_id'])
                     ->where('dosen_id',$dosen['id'])->count();
-                if($count>0) unset($data['dosen'][$key]);
+                if($count>0){
+                    unset($data['mata_kuliah_dosen'][$keyItem]['dosen'][$key]);
+                }
             }
         }
 
         return $data;
+    }
+
+    public function getIsiEvaluasi($mhs_id,Request $request){
+
+        $http = new Client;
+        $response = $http->get('http://sia.politanisamarinda.ac.id/api/mata_kuliah/'.$mhs_id, [
+            'headers' => [
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        $result= json_decode((string) $response->getBody(), true);
+        $semester='';
+        $user_id='';
+        $prodi_id='';
+        $mata_kuliah_dosen=[];
+        $data=[];
+        if($result['success'] && isset($result['response'])){
+            $data=$result['response'];
+            $semester=$data['semester'];
+            $user_id=$data['user_id'];
+            $prodi_id=$data['prodi_id'];
+        }
+
+
+
+        foreach($data['mata_kuliah_dosen'] as  $keyItem=>$item){
+            foreach ($item['dosen'] as $key =>$dosen){
+                $count=HasilEvaluasiDosen::where('semester',$semester)
+                    ->where('users_id',$user_id)
+                    ->where('kelas_id',$item['kelas_id'])
+                    ->where('dosen_id',$dosen['id'])->count();
+                if($count>0){
+                    return 1;
+                }
+            }
+        }
+
+        return 0;
     }
 
 }
