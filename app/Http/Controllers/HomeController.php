@@ -93,15 +93,13 @@ class HomeController extends Controller
                 $prodi_id=$data['prodi_id'];
             }
 
-
-
             foreach($data['mata_kuliah_dosen'] as  $keyItem=>$item){
                 foreach ($item['dosen'] as $key =>$dosen){
                     $count=HasilEvaluasiDosen::where('semester',$semester)
                         ->where('users_id',$user_id)
                         ->where('kelas_id',$item['kelas_id'])
                         ->where('dosen_id',$dosen['id'])->count();
-                    if($count>0){
+                    if($count<=0){
                         return 3;
                     }
                 }
