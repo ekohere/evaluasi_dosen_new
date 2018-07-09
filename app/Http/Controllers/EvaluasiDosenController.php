@@ -6,6 +6,8 @@ use App\Models\HasilEvaluasiDosen;
 use App\Models\HasilEvaluasiDosenHasPertanyaan;
 use App\Models\JenisPertanyaan;
 use App\Models\Pertanyaan;
+use ApiPolitaniSmd;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -54,5 +56,14 @@ class EvaluasiDosenController extends Controller
 
     public function getPertanyaan(){
         return JenisPertanyaan::with(['listPertanyaan'])->orderBy('order')->get();
+    }
+
+    public function test($email,$password){
+
+        $data= ApiPolitaniSmd::mahasiswa($email,$password);
+
+        //return $data->get("success");
+        $data=(json_decode($data->content(),true));
+        return $data["success"];
     }
 }

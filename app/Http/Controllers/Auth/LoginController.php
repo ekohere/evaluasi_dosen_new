@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Britech\ApiPolitaniSmd\Facade;
+use ApiPolitaniSmd;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use GuzzleHttp\Exception\GuzzleException;
@@ -50,28 +52,28 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return bool
      */
-    protected function attemptLogin(Request $request)
+    /*protected function attemptLogin(Request $request)
     {
         $requestData=$request->all();
 
-        try{
-            $result_array=$this->loginApi($requestData);
+        try{*/
+            /*$result_array=$this->loginApi($requestData);
 
-            if(isset($result_array['access_token'])){
+            if(isset($result_array['access_token'])){*/
 
-                $user_array=$this->getUserApi($result_array['access_token']);
+                //$user_array=ApiPolitaniSmd::mahasiswa($requestData[$this->username()],$requestData['password']);  //$this->getUserApi($requestData[$this->username()],$requestData['password']);
 
-                if(isset($user_array['success']) && $user_array['success'] ){
-                    return $this->saveAndLogin($request,$user_array,$result_array['access_token']);
-                }
-            }
-            return false;
+                /*if(isset($user_array->success) && $user_array->success ){
+                    return $this->saveAndLogin($request,$user_array);
+                }*/
+            /*}*/
+            /*return false;
         }catch(RequestException $e){
             return false;
         }
-    }
+    }*/
 
-    public function loginApi($requestData){
+/*    public function loginApi($requestData){
         $response = $this->http->post('http://sia.politanisamarinda.ac.id/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
@@ -82,20 +84,25 @@ class LoginController extends Controller
             ],
         ]);
         return json_decode((string) $response->getBody(), true);
-    }
+    }*/
 
-    public function getUserApi($access_token){
-        $response = $this->http->get('http://sia.politanisamarinda.ac.id/api/user', [
+    public function getUserApi($username,$password){
+        $response = $this->http->post('http://sia.politanisamarinda.ac.id/api/mahasiswa', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization'      => 'Bearer '.$access_token
+                'Authorization'      => 'Bearer '.env('POLITANI_TOKEN'),
+                'Content-Type' => 'application/json',
+            ],
+            'json'=>[
+                'email'=>$username,
+                'password'=>$password,
             ]
         ]);
 
         return json_decode((string)  $response->getBody(), true);
     }
 
-    public function saveAndLogin(Request $request,$user_array,$access_token){
+    public function saveAndLogin(Request $request,$user_array){
 
         $role_array=[];
         foreach($user_array['response']['roles'] as $item){
@@ -125,12 +132,12 @@ class LoginController extends Controller
             ['id'=>$user_array['response']['id'],
                 'name'=>$user_array['response']['name'],
                 'email'=>$user_array['response']['email'],
-                'access_token'=>$access_token,
                 'admin_evaluasi_dosen'=>$user_array['role_admin_evaluasi_dosen'],
                 'mahasiswa'=>$user_array['role_mahasiswa'],
                 'dosen'=>$user_array['role_dosen'],
                 'staff'=>$user_array['role_staff'],]);
 
+        $request->session()->put('user_id',$user_array['response']['id']);
         $request->session()->put('tahun',$user_array['response']['tahun']);
         $request->session()->put('semester',$user_array['response']['semester']);
         $request->session()->put('mahasiswa_id',$user_array['response']['mahasiswa']['id']);
@@ -142,7 +149,6 @@ class LoginController extends Controller
         $request->session()->put('program_studi',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['nama']);
         $request->session()->put('jurusan_id',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['parent_institusi']['id']);
         $request->session()->put('jurusan',$user_array['response']['mahasiswa']['list_institusi'][0]['institusi']['parent_institusi']['nama']);
-
 
         return $this->guard()->login(
             $user, $request->has('remember')

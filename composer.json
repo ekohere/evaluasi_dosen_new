@@ -7,15 +7,16 @@
     "require": {
         "php": ">=5.6.4",
         "appzcoder/crud-generator": "^2.0",
+        "barryvdh/laravel-cors": "^0.11.0",
+        "ellipsesynergie/api-response": "^0.13.0",
+        "guzzlehttp/guzzle": "^6.2",
         "ignasbernotas/laravel-model-generator": "^1.2",
         "laravel/framework": "5.4.*",
         "laravel/passport": "^2.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "guzzlehttp/guzzle": "^6.2",
-        "ellipsesynergie/api-response": "^0.13.0",
-        "nicklaw5/larapi": "^3.0",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "nicklaw5/larapi": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -27,7 +28,8 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Britech\\ApiPolitaniSmd\\": "packages/ekohere/api-politani-smd/src"
         }
     },
     "autoload-dev": {

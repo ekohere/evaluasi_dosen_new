@@ -179,7 +179,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Britech\ApiPolitaniSmd\ApiPolitaniSmdServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,8 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+        'ApiPolitaniSmd' => Britech\ApiPolitaniSmd\Facade::class
 
     ],
 
