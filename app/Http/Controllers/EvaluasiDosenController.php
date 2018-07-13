@@ -42,6 +42,7 @@ class EvaluasiDosenController extends Controller
                     'pertanyaan_id'=>$key,
                     'hasil'=>$item
                 ]);
+
             }
 
             DB::commit();
