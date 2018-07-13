@@ -26,18 +26,12 @@ class HomeController extends Controller
     }
 
     public function getMataKuliahDosen(Request $request){
-        $access_token='';
-        if(isset($request->access_token)){
-            $access_token=$request->access_token;
-        }else{
-            $access_token=Auth::user()->access_token;
-        }
 
         $http = new Client;
         $response = $http->get('http://sia.politanisamarinda.ac.id/api/mata_kuliah', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization'      => 'Bearer '. $access_token
+                'Authorization'      => 'Bearer '. env('SIA_POLITANI_TOKEN')
             ]
         ]);
 
