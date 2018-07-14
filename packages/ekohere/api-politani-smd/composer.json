@@ -1,0 +1,30 @@
+{
+    "name": "ekohere-britech/api-politani-smd",
+    "description": "api data politani samarinda",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Eko Junirianto",
+            "email": "eko.ilkom@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "~5.3|~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Britech\\ApiPolitaniSmd\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Britech\\ApiPolitaniSmd\\ApiPolitaniSmdServiceProvider"
+            ],
+            "aliases": {
+                "ApiPolitaniSmd" : "Britech\\ApiPolitaniSmd\\Facade"
+            }
+        }
+    }
+}

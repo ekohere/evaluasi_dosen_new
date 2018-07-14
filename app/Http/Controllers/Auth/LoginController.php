@@ -90,7 +90,7 @@ class LoginController extends Controller
         $response = $this->http->post('http://sia.politanisamarinda.ac.id/api/mahasiswa', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization'      => 'Bearer '.env('POLITANI_TOKEN'),
+                'Authorization'      => 'Bearer '.env('SIA_POLITANI_TOKEN'),
                 'Content-Type' => 'application/json',
             ],
             'json'=>[
